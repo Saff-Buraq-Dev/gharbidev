@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
+    "baseUrl": "/saff-quasar-portfolio/",
     "paths": {
       "src/*": [
         "src/*"
