@@ -1,49 +1,46 @@
 <template>
-  <q-item
-    clickable
-    tag="a"
-    target="_blank"
-    :href="link"
-  >
-    <q-item-section
-      v-if="icon"
-      avatar
-    >
+  <q-item clickable tag="router-link" :to="link">
+    <q-item-section v-if="icon" avatar>
       <q-icon :name="icon" />
     </q-item-section>
 
     <q-item-section>
-      <q-item-label>{{ title }}</q-item-label>
-      <q-item-label caption>{{ caption }}</q-item-label>
+      <q-item-label>{{ title[lang] }}</q-item-label>
+      <q-item-label caption>{{ caption[lang] }}</q-item-label>
     </q-item-section>
   </q-item>
 </template>
 
 <script>
-import { defineComponent } from 'vue'
+import { defineComponent } from "vue";
 
 export default defineComponent({
-  name: 'EssentialLink',
+  name: "EssentialLink",
   props: {
     title: {
-      type: String,
-      required: true
+      type: Object,
+      required: true,
     },
 
     caption: {
-      type: String,
-      default: ''
+      type: Object,
+      default: "",
     },
 
     link: {
       type: String,
-      default: '#'
+      default: "#",
     },
 
     icon: {
       type: String,
-      default: ''
-    }
-  }
-})
+      required: true,
+    },
+
+    lang: {
+      type: String,
+      default: "fr",
+    },
+  },
+});
 </script>

@@ -25,7 +25,7 @@
             :value="selectedLang"
             text-color="primary"
             :options="langs"
-            @update:model-value="setLang"
+            @update:model-value="toggleLang"
           >
           </q-btn-toggle>
         </div>
@@ -34,11 +34,12 @@
 
     <q-drawer v-model="leftDrawerOpen" show-if-above bordered>
       <q-list>
-        <q-item-label header> Essential Links </q-item-label>
+        <q-item-label header> {{ $t("sections") }} </q-item-label>
 
         <EssentialLink
           v-for="link in essentialLinks"
-          :key="link.title"
+          :key="link.title[selectedLang]"
+          :lang="selectedLang"
           v-bind="link"
         />
       </q-list>
@@ -54,51 +55,6 @@
 import { defineComponent, ref } from "vue";
 import EssentialLink from "../components/EssentialLink.vue";
 
-const linksList = [
-  {
-    title: "Docs",
-    caption: "quasar.dev",
-    icon: "school",
-    link: "https://quasar.dev",
-  },
-  {
-    title: "Github",
-    caption: "github.com/quasarframework",
-    icon: "code",
-    link: "https://github.com/quasarframework",
-  },
-  {
-    title: "Discord Chat Channel",
-    caption: "chat.quasar.dev",
-    icon: "chat",
-    link: "https://chat.quasar.dev",
-  },
-  {
-    title: "Forum",
-    caption: "forum.quasar.dev",
-    icon: "record_voice_over",
-    link: "https://forum.quasar.dev",
-  },
-  {
-    title: "Twitter",
-    caption: "@quasarframework",
-    icon: "rss_feed",
-    link: "https://twitter.quasar.dev",
-  },
-  {
-    title: "Facebook",
-    caption: "@QuasarFramework",
-    icon: "public",
-    link: "https://facebook.quasar.dev",
-  },
-  {
-    title: "Quasar Awesome",
-    caption: "Community Quasar projects",
-    icon: "favorite",
-    link: "https://awesome.quasar.dev",
-  },
-];
-
 const langsList = [
   { label: "FR", value: "fr" },
   { label: "EN", value: "en" },
@@ -113,22 +69,56 @@ export default defineComponent({
 
   data() {
     return {
-      essentialLinks: linksList,
+      essentialLinks: [
+        {
+          title: { fr: "Introduction", en: "Introduction" },
+          caption: {
+            fr: "Une courte introduction",
+            en: "A quick introduction",
+          },
+          icon: "account_circle",
+          link: "/intro",
+        },
+        {
+          title: { fr: "Scolarité", en: "School" },
+          caption: {
+            fr: "Voir mon parcours",
+            en: "See my cursus",
+          },
+          icon: "school",
+          link: "/school",
+        },
+        {
+          title: { fr: "Expériences", en: "Experiences" },
+          caption: {
+            fr: "Voir mon cheminement professionnel",
+            en: "See my career path",
+          },
+          icon: "work",
+          link: "/experiences",
+        },
+      ],
       langs: langsList,
       selectedLang: this.getLang(),
     };
   },
 
+  mounted() {
+    this.$i18n.locale = this.getLang();
+  },
+
   methods: {
     getLang() {
-      // Check if the 'lang' property exists in local storage
       if (localStorage.getItem("lang")) {
-        // Return the value of the 'lang' property if it exists
         return localStorage.getItem("lang");
       } else {
-        // Return 'fr' if the 'lang' property does not exist
         return "fr";
       }
+    },
+    toggleLang(lang) {
+      this.$i18n.locale = lang;
+      this.selectedLang = lang.substring(0, 2);
+      this.setLang(lang);
     },
     setLang(lang) {
       // Write the value of the 'lang' parameter to local storage with the key 'lang'
