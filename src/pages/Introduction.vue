@@ -13,7 +13,7 @@
     ></q-chat-message>
     <q-chat-message
       name="Jane Doe"
-      avatar="~assets/jane-avatar.png"
+      avatar="avatars/jane-avatar.png"
       bg-color="primary"
       text-color="white"
     >
@@ -43,7 +43,7 @@ export default defineComponent({
       messages: [
         {
           name: { fr: "Jane Doe", en: "Jane Doe" },
-          avatar: "src/assets/jane-avatar.png",
+          avatar: "avatars/jane-avatar.png",
           text: {
             fr: ["Parle moi un peu de toi!"],
             en: ["Tell me a bit about yourself!"],
@@ -55,7 +55,7 @@ export default defineComponent({
         },
         {
           name: { fr: "moi", en: "me" },
-          avatar: "src/assets/my-avatar.png",
+          avatar: "avatars/my-avatar.png",
           text: {
             fr: [
               "Je suis étudiant à l'UQAM en Baccalauréat en Informatique et Génie Logiciel. Avec la covid, j'ai eu le courage de changer de carrière pour enfin faire quelque chose qui me stimule. Avant j'étais physiothérapeute ostéopathe!",
@@ -71,7 +71,7 @@ export default defineComponent({
         },
         {
           name: { fr: "Jane Doe", en: "Jane Doe" },
-          avatar: "src/assets/jane-avatar.png",
+          avatar: "avatars/jane-avatar.png",
           text: {
             fr: ["Et pourquoi l'informatique?"],
             en: ["And why Computer Science?"],
@@ -83,7 +83,7 @@ export default defineComponent({
         },
         {
           name: { fr: "moi", en: "me" },
-          avatar: "src/assets/my-avatar.png",
+          avatar: "avatars/my-avatar.png",
           text: {
             fr: [
               "J'aime être stimulé mentalement et trouver des solutions aux problèmes. Une fois j'ai eu une discussion avec un inconnu, où il m'a demandé ce que je faisais dans la vie et si j'aimais cela. J'ai répondu que j'aimerai éventuellement changer de carrière. Il m'a demandé ce que je voulais faire. J'ai dit Informatique. Et comme par hasard, le monsieur était développeur. Alors il m'a conseillé d'aller voir des tutoriels sur YOUTUBE voir si j'aime réellement ça. Et c'était le coup de foudre. Aujourd'hui la programmation est vraiment une passion pour moi!",
@@ -99,7 +99,7 @@ export default defineComponent({
         },
         {
           name: { fr: "Jane Doe", en: "Jane Doe" },
-          avatar: "src/assets/jane-avatar.png",
+          avatar: "avatars/jane-avatar.png",
           text: {
             fr: [
               "Et comment était le retour au banc d'école?",
@@ -117,7 +117,7 @@ export default defineComponent({
         },
         {
           name: { fr: "moi", en: "me" },
-          avatar: "src/assets/my-avatar.png",
+          avatar: "avatars/my-avatar.png",
           text: {
             fr: [
               "Le retour s'est très bien passé! Je pense qu'avec le sérieux, et l'expérience de vie que j'ai acquis m'ont permis de bien performer aux études. Je suis à la moitié de mon bac et je maintiens un gpa de 4.04/4.3 ce qui m'a valu 3 bourses d'excellence.",
