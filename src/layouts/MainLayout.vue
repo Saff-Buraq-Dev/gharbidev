@@ -34,8 +34,9 @@
 
     <q-drawer v-model="leftDrawerOpen" show-if-above bordered>
       <q-list>
-        <q-item-label header> {{ $t("sections") }} </q-item-label>
-
+        <a href="/">
+          <q-img src="~assets/gharbidev.png" contain />
+        </a>
         <EssentialLink
           v-for="link in essentialLinks"
           :key="link.title[selectedLang]"
@@ -46,7 +47,7 @@
     </q-drawer>
 
     <q-page-container>
-      <router-view />
+      <router-view :lang="selectedLang" />
     </q-page-container>
   </q-layout>
 </template>

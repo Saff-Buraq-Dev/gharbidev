@@ -1,12 +1,16 @@
-<template>
-  <h1>Test2</h1>
-</template>
-
+<template></template>
+<style scoped>
+</style>
 <script>
 import { defineComponent } from "vue";
 
 export default defineComponent({
-  name: "EssentialLink",
-  props: {},
+  name: "Experiences",
+  props: {
+    lang: {
+      type: String,
+      default: "fr",
+    },
+  },
 });
 </script>
