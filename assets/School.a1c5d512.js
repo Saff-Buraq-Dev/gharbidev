@@ -1,1 +1,0 @@
-import{_ as e,L as n,M as o,V as s}from"./index.062a08bb.js";const t=n({name:"EssentialLink",props:{}});function a(r,c,p,_,l,f){return o(),s("h1",null,"Test1")}var m=e(t,[["render",a]]);export{m as default};
