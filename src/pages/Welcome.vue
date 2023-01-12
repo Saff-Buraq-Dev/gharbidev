@@ -4,7 +4,7 @@
       <q-card class="full-height" bordered>
         <q-card-section horizontal>
           <q-img class="col" src="~assets/saff.png" fit="contain"></q-img>
-          <q-card-actions vertical>
+          <q-card-actions vertical class="justify-around">
             <a target="_blank" href="https://github.com/Saff-Buraq-Dev"
               ><q-btn flat round icon="fab fa-github" size="xl"></q-btn
             ></a>
@@ -40,6 +40,15 @@
                 size="xl"
               ></q-btn
             ></a>
+            <a href="mailto: gharbi.safwen@hotmail.com">
+              <q-btn
+                flat
+                round
+                color="black"
+                icon="fas fa-envelope"
+                size="xl"
+              ></q-btn
+            ></a>
           </q-card-actions>
         </q-card-section>
       </q-card>
@@ -52,6 +61,8 @@
           arrows
           infinite
           control-color="primary"
+          :autoplay="5000"
+          swipeable
         >
           <q-carousel-slide :name="1" img-src="~assets/programming.png">
             <div class="absolute-bottom custom-caption">
