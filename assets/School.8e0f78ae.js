@@ -1,1 +1,0 @@
-import{_ as e,L as o,M as n,U as t}from"./index.e580c3e8.js";const r=o({name:"School",props:{}});function s(a,c,p,_,l,f){return n(),t("h1",null,"Test1")}var d=e(r,[["render",s]]);export{d as default};
