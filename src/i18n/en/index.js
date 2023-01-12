@@ -2,7 +2,7 @@
 // so you can safely delete all default props below
 
 export default {
-  sections: "Sections",
+  schooling: "Schooling",
   intro: {
     passion: "Passion", passionText: "For me, programming is more than a career choice. It has become a real passion!",
     collaboration: "Collaboration", collaborationText: "I believe that effective communication and collaboration are essential to delivering high quality projects and I always strive to maintain these standards in my current and past projects.",
