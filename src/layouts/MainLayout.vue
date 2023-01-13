@@ -98,6 +98,15 @@ export default defineComponent({
           icon: "work",
           link: "/experiences",
         },
+        {
+          title: { fr: "Curriculum Vitae", en: "Curriculum Vitae" },
+          caption: {
+            fr: "Voir mon cv",
+            en: "See my cv",
+          },
+          icon: "workspace_premium",
+          link: "/curriculum",
+        },
       ],
       langs: langsList,
       selectedLang: this.getLang(),
