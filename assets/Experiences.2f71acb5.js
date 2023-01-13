@@ -1,1 +1,0 @@
-import{_ as e,K as n}from"./index.fd9fc989.js";const r=n({name:"Experiences",props:{lang:{type:String,default:"fr"}}});function t(p,s,a,o,c,f){return null}var i=e(r,[["render",t]]);export{i as default};
