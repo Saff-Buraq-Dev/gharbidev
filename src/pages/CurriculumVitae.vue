@@ -2,7 +2,7 @@
   <q-page class="flex flex-center">
     <q-pdfviewer
       v-model="show"
-      type="pdfjs"
+      type="html5"
       :src="updatedSrc"
       content-class="absolute"
     ></q-pdfviewer>
@@ -44,7 +44,7 @@ export default defineComponent({
       if (process.env.MODE === "electron") {
         return "/" + this.src;
       }
-      return this.getLocation(this.src);
+      return this.src;
     },
   },
 });
