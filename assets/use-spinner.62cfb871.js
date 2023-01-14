@@ -1,1 +1,0 @@
-import{c as i}from"./vm.a770eb09.js";import{c as s}from"./index.6381f80d.js";const r={size:{type:[Number,String],default:"1em"},color:String};function o(e){return{cSize:s(()=>e.size in i?`${i[e.size]}px`:e.size),classes:s(()=>"q-spinner"+(e.color?` text-${e.color}`:""))}}export{o as a,r as u};
