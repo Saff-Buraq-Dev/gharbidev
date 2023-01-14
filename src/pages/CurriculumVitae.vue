@@ -23,7 +23,7 @@ export default defineComponent({
   data() {
     return {
       show: true,
-      src: "src/assets/resume-" + this.lang + ".pdf",
+      src: "pdf/resume-" + this.lang + ".pdf",
     };
   },
   methods: {

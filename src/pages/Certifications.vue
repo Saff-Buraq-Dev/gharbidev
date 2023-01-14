@@ -17,7 +17,7 @@ export default defineComponent({
   data() {
     return {
       show: true,
-      src: "src/assets/ccp.pdf",
+      src: "pdf/ccp.pdf",
     };
   },
   methods: {

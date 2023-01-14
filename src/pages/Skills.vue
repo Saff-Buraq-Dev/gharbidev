@@ -100,6 +100,7 @@
 
         <q-separator></q-separator>
 
+        <!-- STARS -->
         <q-card-actions class="justify-center">
           <q-rating
             v-model="stars"
@@ -110,6 +111,7 @@
             icon-selected="star"
             icon-half="star_half"
             no-dimming
+            readonly
           ></q-rating>
         </q-card-actions>
       </q-card>
