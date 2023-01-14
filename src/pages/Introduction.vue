@@ -1,24 +1,48 @@
 <template>
   <div class="chat-wrapper q-pa-lg">
-    <q-chat-message
-      v-for="message in messages"
-      :key="message.stamp[lang]"
-      :name="message.name[lang]"
-      :avatar="message.avatar"
-      :text="message.text[lang]"
-      :stamp="message.stamp[lang]"
-      :sent="message.sent"
-      :bg-color="message.bgColor"
-      :text-color="message.textColor"
-    ></q-chat-message>
-    <q-chat-message
-      name="Jane Doe"
-      avatar="avatars/jane-avatar.png"
-      bg-color="primary"
-      text-color="white"
+    <q-layout
+      view="lHh lpr lFf"
+      container
+      style="height: 600px"
+      class="shadow-2 rounded-borders"
     >
-      <q-spinner-dots size="2rem"></q-spinner-dots>
-    </q-chat-message>
+      <q-header elevated>
+        <q-bar>
+          <q-icon name="fab fa-facebook-messenger"></q-icon>
+          <div>Messenger</div>
+
+          <q-space></q-space>
+
+          <q-btn dense flat icon="minimize"></q-btn>
+          <q-btn dense flat icon="crop_square"></q-btn>
+          <q-btn dense flat icon="close"></q-btn>
+        </q-bar>
+      </q-header>
+
+      <q-page-container>
+        <q-page class="q-pa-md">
+          <q-chat-message
+            v-for="message in messages"
+            :key="message.stamp[lang]"
+            :name="message.name[lang]"
+            :avatar="message.avatar"
+            :text="message.text[lang]"
+            :stamp="message.stamp[lang]"
+            :sent="message.sent"
+            :bg-color="message.bgColor"
+            :text-color="message.textColor"
+          ></q-chat-message>
+          <q-chat-message
+            name="Jane Doe"
+            avatar="avatars/jane-avatar.png"
+            bg-color="primary"
+            text-color="white"
+          >
+            <q-spinner-dots size="2rem"></q-spinner-dots>
+          </q-chat-message>
+        </q-page>
+      </q-page-container>
+    </q-layout>
   </div>
 </template>
 <style scoped>

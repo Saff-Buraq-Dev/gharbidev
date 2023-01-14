@@ -91,9 +91,10 @@
                       ></q-icon>
                     </q-item-section>
                     <q-item-section>
-                      <q-item-label class="experienceDescription">{{
-                        description
-                      }}</q-item-label>
+                      <q-item-label
+                        class="experienceDescription text-justify"
+                        >{{ description }}</q-item-label
+                      >
                     </q-item-section>
                   </q-item>
                 </q-list>

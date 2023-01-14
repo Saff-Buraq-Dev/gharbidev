@@ -9,6 +9,9 @@ const routes = [
       { path: 'school', component: () => import('../pages/School.vue') },
       { path: 'experiences', component: () => import('../pages/Experiences.vue') },
       { path: 'curriculum', component: () => import('../pages/CurriculumVitae.vue') },
+      { path: 'techs', component: () => import('../pages/Technologies.vue') },
+      { path: 'skills', component: () => import('../pages/Skills.vue') },
+      { path: 'certifications', component: () => import('../pages/Certifications.vue') },
     ]
   },
 

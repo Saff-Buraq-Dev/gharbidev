@@ -11,7 +11,9 @@
           @click="toggleLeftDrawer"
         />
 
-        <q-toolbar-title> Safouene Gharbi </q-toolbar-title>
+        <q-toolbar-title>
+          {{ $t("fullstackDeveloper") }} | AWS Certified Cloud Practitioner
+        </q-toolbar-title>
 
         <div>
           <q-btn-toggle
@@ -34,7 +36,7 @@
 
     <q-drawer v-model="leftDrawerOpen" show-if-above bordered>
       <q-list>
-        <a href="/">
+        <a href="/saff-quasar-portfolio">
           <q-img src="~assets/gharbidev.png" contain />
         </a>
         <EssentialLink
@@ -104,8 +106,35 @@ export default defineComponent({
             fr: "Voir mon cv",
             en: "See my cv",
           },
-          icon: "workspace_premium",
+          icon: "description",
           link: "/curriculum",
+        },
+        {
+          title: { fr: "Technologies", en: "Technologies" },
+          caption: {
+            fr: "Voir ma pile technologique",
+            en: "See my tech stack",
+          },
+          icon: "biotech",
+          link: "/techs",
+        },
+        {
+          title: { fr: "Jeu des compétences", en: "Skills game" },
+          caption: {
+            fr: "Testez mes compétences",
+            en: "Test my skills",
+          },
+          icon: "sports_esports",
+          link: "/skills",
+        },
+        {
+          title: { fr: "Certifications", en: "Certifications" },
+          caption: {
+            fr: "Voir mes certifications",
+            en: "See my certifications",
+          },
+          icon: "workspace_premium",
+          link: "/certifications",
         },
       ],
       langs: langsList,
