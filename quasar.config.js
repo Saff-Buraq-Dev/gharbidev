@@ -60,7 +60,7 @@ module.exports = configure(function (/* ctx */) {
       // rebuildCache: true, // rebuilds Vite/linter/etc cache on startup
 
       publicPath: process.env.NODE_ENV === 'production'
-        ? '/saff-quasar-portfolio'
+        ? '/gharbidev'
         : '',
       // analyze: true,
       // env: {},
@@ -196,7 +196,7 @@ module.exports = configure(function (/* ctx */) {
       builder: {
         // https://www.electron.build/configuration/configuration
 
-        appId: 'saff-quasar-portfolio'
+        appId: 'gharbidev'
       }
     },
 
