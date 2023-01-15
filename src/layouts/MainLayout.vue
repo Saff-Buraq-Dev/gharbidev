@@ -36,7 +36,7 @@
 
     <q-drawer v-model="leftDrawerOpen" show-if-above bordered>
       <q-list>
-        <a href="/gharbidev">
+        <a href="/">
           <q-img src="~assets/gharbidev.png" contain />
         </a>
         <EssentialLink
