@@ -52,7 +52,7 @@ module.exports = configure(function (/* ctx */) {
         node: 'node16'
       },
 
-      vueRouterMode: 'hash', // available values: 'hash', 'history'
+      vueRouterMode: 'history', // available values: 'hash', 'history'
       // vueRouterBase,
       // vueDevtools,
       // vueOptionsAPI: false,
@@ -79,7 +79,8 @@ module.exports = configure(function (/* ctx */) {
           // compositionOnly: false,
 
           // you need to set i18n resource including paths !
-          include: path.resolve(__dirname, './src/i18n/**')
+          include: path.resolve(__dirname, './src/i18n/**'),
+          runtimeOnly: false,
         }]
       ]
     },
