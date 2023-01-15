@@ -14,7 +14,7 @@
         arrows
         infinite
         control-color="primary"
-        :autoplay="5000"
+        :autoplay="7000"
         swipeable
       >
         <q-carousel-slide :name="1" img-src="~assets/programming.png">
