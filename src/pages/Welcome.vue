@@ -114,7 +114,7 @@ export default defineComponent({
           icon: "img:ccp.png",
         },
         {
-          url: `src/assets/resume-${this.lang}.pdf`,
+          url: `pdf/resume-${this.lang}.pdf`,
           color: "negative",
           icon: "img:cv.png",
         },
