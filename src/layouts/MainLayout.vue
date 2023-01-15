@@ -128,6 +128,15 @@ export default defineComponent({
           link: "/skills",
         },
         {
+          title: { fr: "Projets", en: "Projects" },
+          caption: {
+            fr: "Mes projets personnels",
+            en: "My personal projects",
+          },
+          icon: "engineering",
+          link: "/projects",
+        },
+        {
           title: { fr: "Certifications", en: "Certifications" },
           caption: {
             fr: "Voir mes certifications",

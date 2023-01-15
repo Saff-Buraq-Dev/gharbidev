@@ -11,6 +11,7 @@ const routes = [
       { path: 'curriculum', component: () => import('../pages/CurriculumVitae.vue') },
       { path: 'techs', component: () => import('../pages/Technologies.vue') },
       { path: 'skills', component: () => import('../pages/Skills.vue') },
+      { path: 'projects', component: () => import('../pages/Projects.vue') },
       { path: 'certifications', component: () => import('../pages/Certifications.vue') },
     ]
   },

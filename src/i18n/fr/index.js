@@ -18,5 +18,6 @@ export default {
   talk: "Discutons",
   hireMeText: "Pas mal non ? J'ai des connaissances solides en {stackText} et je suis convaincu que je serais un atout précieux pour n'importe quelle équipe.",
   close: "Fermer",
+  seeMore: "Voir plus"
 }
 

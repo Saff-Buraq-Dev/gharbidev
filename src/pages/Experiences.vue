@@ -32,6 +32,9 @@
           v-for="experience in filtered"
           :key="experience.company"
           @click="selectExperience(experience)"
+          :class="
+            experience.company == selectedExperience.company ? 'selected' : ''
+          "
         >
           <q-item-section>
             <q-item-label class="experienceTitle">{{
@@ -46,7 +49,7 @@
       <q-card class="card-height" flat bordered>
         <q-item>
           <q-item-section>
-            <q-item-label class="text-h5 experienceCompany">
+            <q-item-label class="text-h5 experienceCompany text-center">
               {{ selectedExperience.company }}
             </q-item-label>
           </q-item-section>
@@ -127,7 +130,7 @@
     </div>
   </div>
 </template>
-<style scoped>
+<style lang="scss" scoped>
 .row {
   display: flex;
 }
@@ -139,9 +142,14 @@
 .card-height {
   height: 100%;
 }
-mark {
-  background: orange;
-  color: black;
+.selected {
+  background-color: rgba(25, 118, 210, 1);
+  color: white;
+  font-size: large;
+  & .text-caption {
+    color: white;
+    font-size: large;
+  }
 }
 </style>
 <script>
