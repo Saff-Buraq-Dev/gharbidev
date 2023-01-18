@@ -28,12 +28,8 @@
       </q-input>
     </div>
   </div>
-  <div v-if="loading">
-    <q-spinner-ios color="primary" size="2em"></q-spinner-ios>
-    <q-tooltip :offset="[0, 8]">QSpinnerIos</q-tooltip>
-  </div>
 
-  <div v-else class="row q-pa-md q-gutter-sm">
+  <div class="row q-pa-md q-gutter-sm">
     <div id="experiences" class="col-3">
       <q-list bordered separator>
         <q-item
@@ -307,10 +303,6 @@ export default defineComponent({
     };
   },
   mounted() {
-    this.isLandscape = window.screen.orientation.type.startsWith('landscape')
-    window.addEventListener("orientationchange", () => {
-      this.isLandscape = window.screen.orientation.type.startsWith('landscape')
-    });
     this.selectedExperience = this.experiences[0];
     this.loading = false;
   },
@@ -361,14 +353,9 @@ export default defineComponent({
       const element = document.querySelectorAll(
         ".experienceDescription, .experienceTask, .experienceCompany, .experienceTitle"
       );
-      console.log(input);
-      console.log(element);
       const instance = new Mark(element);
-      console.log(instance);
       instance.unmark({
         done: function () {
-          console.log("done");
-          console.log(input);
           instance.mark(input);
         },
       });
