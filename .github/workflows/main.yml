@@ -20,3 +20,8 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: dist/spa
+      - run: |
+          curl -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+          -X PATCH \
+          -d '{"custom_domain": "gharbidev.com"}' \
+          https://api.github.com/repos/${{ env.GITHUB_REPOSITORY }}/pages
