@@ -1,4 +1,14 @@
 <template>
+  <div v-if="$q.screen.width < 600">
+    <q-card class="my-card">
+      <q-img src="turn-phone.png">
+        <div class="absolute-bottom text-subtitle2 text-center">
+          {{ $t("turnPhone") }}
+        </div>
+      </q-img>
+    </q-card>
+  </div>
+  <div v-else>
   <div class="row q-pa-md q-gutter-sm">
     <div class="col-12">
       <q-input
@@ -129,6 +139,7 @@
       </q-card>
     </div>
   </div>
+  </div>
 </template>
 <style lang="scss" scoped>
 .row {
@@ -154,6 +165,7 @@
 </style>
 <script>
 import { defineComponent, ref } from "vue";
+import { useQuasar } from 'quasar';
 import Mark from "mark.js";
 
 export default defineComponent({
@@ -166,6 +178,7 @@ export default defineComponent({
   },
   data() {
     return {
+      isLandscape: false,
       experiences: [
         {
           title: {
@@ -294,6 +307,10 @@ export default defineComponent({
     };
   },
   mounted() {
+    this.isLandscape = window.screen.orientation.type.startsWith('landscape')
+    window.addEventListener("orientationchange", () => {
+      this.isLandscape = window.screen.orientation.type.startsWith('landscape')
+    });
     this.selectedExperience = this.experiences[0];
     this.loading = false;
   },
@@ -374,6 +391,7 @@ export default defineComponent({
     },
   },
   setup() {
+    const $q = useQuasar();
     return {
       tab: ref("description"),
       thumbStyle: {

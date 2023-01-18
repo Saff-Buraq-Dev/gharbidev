@@ -1,13 +1,6 @@
 <template>
   <div class="row">
-    <div class="col-3 q-pa-sm q-gutter-sm">
-      <q-card class="full-height" bordered>
-        <q-card-section horizontal>
-          <q-img src="~assets/saff.png" fit="contain"></q-img>
-        </q-card-section>
-      </q-card>
-    </div>
-    <div class="col-9 q-pa-md q-gutter-md">
+    <div class="col q-pa-md q-gutter-md">
       <q-carousel
         animated
         v-model="slide"

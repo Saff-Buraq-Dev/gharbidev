@@ -19,4 +19,5 @@ export default {
   hireMeText: "Not bad right ? I have solid knowledge of {stackText} and I am confident that I would be a valuable asset to any team.",
   close: "Close",
   seeMore: "See More",
+  turnPhone: "Turn your phone to see this content"
 }
