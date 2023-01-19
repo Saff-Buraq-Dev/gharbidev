@@ -86,7 +86,6 @@
         <q-card-section class="bg-primary text-white">
           <div class="text-h6">{{ $t("game.instructions") }}</div>
         </q-card-section>
-        angular,
 
         <q-separator></q-separator>
 
