@@ -1,134 +1,100 @@
 <template>
-  <div class="row q-pa-md" v-if="!loading">
-    <div class="col-4 q-pa-md bordered">
-      <h3 class="q-pb-md text-center">Skills</h3>
-      <draggable
-        class="list-group"
-        :list="skills"
-        group="skills"
-        @change="updateScore"
-        itemKey="name"
-        ghost-class="ghost"
-        placeholder="drop-placeholder"
-      >
-        <template #item="{ element, index }">
-          <q-img
-            :src="element.url"
-            :alt="element.name + index"
-            height="64px"
-            width="64px"
-          >
-          </q-img>
-        </template>
-      </draggable>
-    </div>
-    <div class="col-4 q-pa-md bordered">
-      <h3 class="q-pb-md text-center">Stack</h3>
-      <draggable
-        class="list-group q-ma-sm"
-        :list="stack"
-        group="skills"
-        @change="updateScore"
-        itemKey="name"
-        ghost-class="ghost"
-        placeholder="drop-placeholder"
-      >
-        <template #item="{ element, index }">
-          <q-img
-            :src="element.url"
-            :alt="element.name + index"
-            height="64px"
-            width="64px"
-          >
-          </q-img>
-        </template>
-      </draggable>
-    </div>
-    <div class="col-4 q-pa-sm bordered">
-      <div class="container">
-        <h3 class="q-pb-md text-center">Score</h3>
-        <q-btn
-          round
-          icon="notifications"
-          class="notificationBtn"
-          v-if="stars >= 4"
-          @click="inception = true"
-        >
-          <q-badge floating color="red" rounded></q-badge>
-        </q-btn>
+  <TurnPhone v-if="$q.screen.width < 600">
+  </TurnPhone>
+  <div v-else>
+    <div class="row q-pa-md" v-if="!loading">
+      <div class="col-4 q-pa-md bordered">
+        <h3 class="q-pb-md text-center">Skills</h3>
+        <draggable class="list-group" :list="skills" group="skills" @change="updateScore" itemKey="name"
+          ghost-class="ghost" placeholder="drop-placeholder">
+          <template #item="{ element, index }">
+            <q-img :src="element.url" :alt="element.name + index" height="64px" width="64px">
+            </q-img>
+          </template>
+        </draggable>
       </div>
+      <div class="col-4 q-pa-md bordered">
+        <h3 class="q-pb-md text-center">Stack</h3>
+        <draggable class="list-group q-ma-sm" :list="stack" group="skills" @change="updateScore" itemKey="name"
+          ghost-class="ghost" placeholder="drop-placeholder">
+          <template #item="{ element, index }">
+            <q-img :src="element.url" :alt="element.name + index" height="64px" width="64px">
+            </q-img>
+          </template>
+        </draggable>
+      </div>
+      <div class="col-4 q-pa-sm bordered">
+        <div class="container">
+          <h3 class="q-pb-md text-center">Score</h3>
+          <q-btn round icon="notifications" class="notificationBtn" v-if="stars >= 4" @click="inception = true">
+            <q-badge floating color="red" rounded></q-badge>
+          </q-btn>
+        </div>
 
-      <!-- DIALOG -->
-      <q-dialog v-model="inception">
-        <q-card>
+        <!-- DIALOG -->
+        <q-dialog v-model="inception">
+          <q-card>
+            <q-card-section>
+              <div class="text-h6">{{ $t("hireMe") }}</div>
+            </q-card-section>
+
+            <q-card-section class="q-pt-none text-weight-medium">
+              {{ $t("hireMeText", { stackText: stackText }) }}
+            </q-card-section>
+
+            <q-card-actions align="right" class="text-primary">
+              <a href="mailto: gharbi.safwen@hotmail.com">
+                <q-btn flat :label="$t('talk')"></q-btn>
+              </a>
+              <q-btn flat :label="$t('close')" v-close-popup></q-btn>
+            </q-card-actions>
+          </q-card>
+        </q-dialog>
+
+        <!-- SCORE BOARD -->
+        <q-card flat bordered class="my-card bg-grey-1">
           <q-card-section>
-            <div class="text-h6">{{ $t("hireMe") }}</div>
+            <div class="row items-center no-wrap">
+              <div id="score" class="col text-center">00</div>
+
+              <div class="col-auto">
+                <q-btn color="grey-7" round flat icon="more_vert">
+                  <q-menu cover auto-close>
+                    <q-list>
+                      <q-item clickable>
+                        <q-item-section @click="reset()">Reset</q-item-section>
+                      </q-item>
+                    </q-list>
+                  </q-menu>
+                </q-btn>
+              </div>
+            </div>
           </q-card-section>
 
-          <q-card-section class="q-pt-none text-weight-medium">
-            {{ $t("hireMeText", { stackText: stackText }) }}
-          </q-card-section>
+          <q-separator></q-separator>
 
-          <q-card-actions align="right" class="text-primary">
-            <a href="mailto: gharbi.safwen@hotmail.com">
-              <q-btn flat :label="$t('talk')"></q-btn>
-            </a>
-            <q-btn flat :label="$t('close')" v-close-popup></q-btn>
+          <!-- STARS -->
+          <q-card-actions class="justify-center">
+            <q-rating v-model="stars" max="5" size="3em" color="yellow" icon="star_border" icon-selected="star"
+              icon-half="star_half" no-dimming readonly></q-rating>
           </q-card-actions>
         </q-card>
-      </q-dialog>
-
-      <!-- SCORE BOARD -->
-      <q-card flat bordered class="my-card bg-grey-1">
-        <q-card-section>
-          <div class="row items-center no-wrap">
-            <div id="score" class="col text-center">00</div>
-
-            <div class="col-auto">
-              <q-btn color="grey-7" round flat icon="more_vert">
-                <q-menu cover auto-close>
-                  <q-list>
-                    <q-item clickable>
-                      <q-item-section @click="reset()">Reset</q-item-section>
-                    </q-item>
-                  </q-list>
-                </q-menu>
-              </q-btn>
-            </div>
-          </div>
+      </div>
+    </div>
+    <div class="q-pa-md">
+      <q-card class="instructions-card q-pa-md">
+        <q-card-section class="bg-primary text-white">
+          <div class="text-h6">{{ $t("game.instructions") }}</div>
         </q-card-section>
+        angular,
 
         <q-separator></q-separator>
 
-        <!-- STARS -->
-        <q-card-actions class="justify-center">
-          <q-rating
-            v-model="stars"
-            max="5"
-            size="3em"
-            color="yellow"
-            icon="star_border"
-            icon-selected="star"
-            icon-half="star_half"
-            no-dimming
-            readonly
-          ></q-rating>
-        </q-card-actions>
+        <div class="text-justify text-weight-bold q-pa-md">
+          {{ $t("game.instructionsText") }}
+        </div>
       </q-card>
     </div>
-  </div>
-  <div class="q-pa-md">
-    <q-card class="instructions-card q-pa-md">
-      <q-card-section class="bg-primary text-white">
-        <div class="text-h6">{{ $t("game.instructions") }}</div>
-      </q-card-section>
-
-      <q-separator></q-separator>
-
-      <div class="text-justify text-weight-bold q-pa-md">
-        {{ $t("game.instructionsText") }}
-      </div>
-    </q-card>
   </div>
 </template>
 
@@ -136,36 +102,50 @@
 a {
   text-decoration: none;
 }
+
 .ghost {
   background-color: rgba(0, 0, 0, 0.1);
   border: 2px dashed #ccc;
 }
+
 .drop-placeholder {
   background-color: #ddd;
   border: 2px dashed #ccc;
   border-radius: 8px;
   padding: 12px;
 }
+
 .my-card {
   margin: auto;
   width: 100%;
   max-width: 400px;
 }
+
 .bordered {
   border: 2px solid #ccc;
   box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.1);
 }
+
 .container {
-  align-items: center; /* center the items vertically */
-  justify-content: space-between; /* align the items to the left and right */
-  position: relative; /* set position relative to allow the absolute positioning of the icon */
+  align-items: center;
+  /* center the items vertically */
+  justify-content: space-between;
+  /* align the items to the left and right */
+  position: relative;
+  /* set position relative to allow the absolute positioning of the icon */
 }
+
 .notificationBtn {
-  position: absolute; /* position the icon absolutely */
-  right: 0; /* align it to the right */
-  top: 50%; /* center it vertically */
-  transform: translateY(-50%); /* adjust the position */
+  position: absolute;
+  /* position the icon absolutely */
+  right: 0;
+  /* align it to the right */
+  top: 50%;
+  /* center it vertically */
+  transform: translateY(-50%);
+  /* adjust the position */
 }
+
 #score {
   font-size: xx-large;
 }
@@ -173,6 +153,8 @@ a {
 <script>
 import { defineComponent } from "vue";
 import draggable from "vuedraggable";
+import TurnPhone from "../components/TurnPhone.vue";
+
 import {
   html,
   css,
@@ -209,6 +191,7 @@ export default defineComponent({
   name: "Skills",
   components: {
     draggable,
+    TurnPhone,
   },
   props: {
     lang: {
@@ -290,7 +273,7 @@ export default defineComponent({
       let mean =
         this.stack.length > 0
           ? this.stack.reduce((acc, curr) => acc + curr.score, 0) /
-            this.stack.length
+          this.stack.length
           : 0;
       return mean / 20;
     },

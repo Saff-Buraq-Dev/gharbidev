@@ -1,158 +1,117 @@
 <template>
-  <div v-if="$q.screen.width < 600">
-    <q-card class="my-card">
-      <q-img src="turn-phone.png">
-        <div class="absolute-bottom text-subtitle2 text-center">
-          {{ $t("turnPhone") }}
-        </div>
-      </q-img>
-    </q-card>
-  </div>
+  <TurnPhone v-if="$q.screen.width < 600">
+  </TurnPhone>
   <div v-else>
-  <div class="row q-pa-md q-gutter-sm">
-    <div class="col-12">
-      <q-input
-        v-model="search"
-        type="search"
-        :hint="$t('search')"
-        filled
-        rounded
-        debounce="200"
-      >
-        <template v-slot:prepend>
-          <q-icon name="search"></q-icon>
-        </template>
-        <template v-slot:append>
-          <q-icon name="clear" @click="clearSearch()"></q-icon>
-        </template>
-      </q-input>
+    <div class="row q-pa-md q-gutter-sm">
+      <div class="col-12">
+        <q-input v-model="search" type="search" :hint="$t('search')" filled rounded debounce="200">
+          <template v-slot:prepend>
+            <q-icon name="search"></q-icon>
+          </template>
+          <template v-slot:append>
+            <q-icon name="clear" @click="clearSearch()"></q-icon>
+          </template>
+        </q-input>
+      </div>
     </div>
-  </div>
 
-  <div class="row q-pa-md q-gutter-sm">
-    <div id="experiences" class="col-3">
-      <q-list bordered separator>
-        <q-item
-          clickable
-          v-ripple
-          v-for="experience in filtered"
-          :key="experience.company"
-          @click="selectExperience(experience)"
-          :class="
-            experience.company == selectedExperience.company ? 'selected' : ''
-          "
-        >
-          <q-item-section>
-            <q-item-label class="experienceTitle">{{
-              experience.title[lang]
-            }}</q-item-label>
-            <q-item-label caption>{{ experience.period[lang] }}</q-item-label>
-          </q-item-section>
-        </q-item>
-      </q-list>
-    </div>
-    <div class="col-9">
-      <q-card class="card-height" flat bordered>
-        <q-item>
-          <q-item-section>
-            <q-item-label class="text-h5 experienceCompany text-center">
-              {{ selectedExperience.company }}
-            </q-item-label>
-          </q-item-section>
-        </q-item>
-
-        <q-separator></q-separator>
-
-        <q-card>
-          <q-tabs
-            v-model="tab"
-            dense
-            class="text-grey"
-            active-color="primary"
-            indicator-color="primary"
-            narrow-indicator
-          >
-            <q-tab name="description" :label="$t('description')"></q-tab>
-            <q-tab name="summary" :label="$t('summary')"></q-tab>
-          </q-tabs>
+    <div class="row q-pa-md q-gutter-sm">
+      <div id="experiences" class="col-3">
+        <q-list bordered separator>
+          <q-item clickable v-ripple v-for="experience in filtered" :key="experience.company"
+            @click="selectExperience(experience)" :class="
+              experience.company == selectedExperience.company ? 'selected' : ''
+            ">
+            <q-item-section>
+              <q-item-label class="experienceTitle">{{
+                experience.title[lang]
+              }}</q-item-label>
+              <q-item-label caption>{{ experience.period[lang] }}</q-item-label>
+            </q-item-section>
+          </q-item>
+        </q-list>
+      </div>
+      <div class="col-9">
+        <q-card class="card-height" flat bordered>
+          <q-item>
+            <q-item-section>
+              <q-item-label class="text-h5 experienceCompany text-center">
+                {{ selectedExperience.company }}
+              </q-item-label>
+            </q-item-section>
+          </q-item>
 
           <q-separator></q-separator>
 
-          <q-tab-panels v-model="tab" animated class="q-pa-md">
-            <q-tab-panel name="description">
-              <div class="text-h6">{{ $t("description") }}</div>
-              <q-scroll-area
-                :thumb-style="thumbStyle"
-                :bar-style="barStyle"
-                style="height: 400px"
-              >
+          <q-card>
+            <q-tabs v-model="tab" dense class="text-grey" active-color="primary" indicator-color="primary"
+              narrow-indicator>
+              <q-tab name="description" :label="$t('description')"></q-tab>
+              <q-tab name="summary" :label="$t('summary')"></q-tab>
+            </q-tabs>
+
+            <q-separator></q-separator>
+
+            <q-tab-panels v-model="tab" animated class="q-pa-md">
+              <q-tab-panel name="description">
+                <div class="text-h6">{{ $t("description") }}</div>
+                <q-scroll-area :thumb-style="thumbStyle" :bar-style="barStyle" style="height: 400px">
+                  <q-list>
+                    <q-item clickable v-ripple v-for="description in selectedExperience.descriptions[lang]"
+                      :key="description">
+                      <q-item-section avatar>
+                        <q-icon color="secondary" name="check_circle_outline"></q-icon>
+                      </q-item-section>
+                      <q-item-section>
+                        <q-item-label class="experienceDescription text-justify">{{ description }}</q-item-label>
+                      </q-item-section>
+                    </q-item>
+                  </q-list>
+                </q-scroll-area>
+              </q-tab-panel>
+
+              <q-tab-panel name="summary">
+                <div class="text-h6">{{ $t("summary") }}</div>
                 <q-list>
-                  <q-item
-                    clickable
-                    v-ripple
-                    v-for="description in selectedExperience.descriptions[lang]"
-                    :key="description"
-                  >
+                  <q-item clickable v-ripple v-for="task in selectedExperience.tasks[lang]" :key="task">
                     <q-item-section avatar>
-                      <q-icon
-                        color="secondary"
-                        name="check_circle_outline"
-                      ></q-icon>
+                      <q-icon color="secondary" name="check"></q-icon>
                     </q-item-section>
                     <q-item-section>
-                      <q-item-label
-                        class="experienceDescription text-justify"
-                        >{{ description }}</q-item-label
-                      >
+                      <q-item-label class="experienceTask">{{
+                        task
+                      }}</q-item-label>
                     </q-item-section>
                   </q-item>
                 </q-list>
-              </q-scroll-area>
-            </q-tab-panel>
-
-            <q-tab-panel name="summary">
-              <div class="text-h6">{{ $t("summary") }}</div>
-              <q-list>
-                <q-item
-                  clickable
-                  v-ripple
-                  v-for="task in selectedExperience.tasks[lang]"
-                  :key="task"
-                >
-                  <q-item-section avatar>
-                    <q-icon color="secondary" name="check"></q-icon>
-                  </q-item-section>
-                  <q-item-section>
-                    <q-item-label class="experienceTask">{{
-                      task
-                    }}</q-item-label>
-                  </q-item-section>
-                </q-item>
-              </q-list>
-            </q-tab-panel>
-          </q-tab-panels>
+              </q-tab-panel>
+            </q-tab-panels>
+          </q-card>
         </q-card>
-      </q-card>
+      </div>
     </div>
-  </div>
   </div>
 </template>
 <style lang="scss" scoped>
 .row {
   display: flex;
 }
+
 .col-3,
 .col-9 {
   flex: 1;
 }
+
 .list-height,
 .card-height {
   height: 100%;
 }
+
 .selected {
   background-color: rgba(25, 118, 210, 1);
   color: white;
   font-size: large;
+
   & .text-caption {
     color: white;
     font-size: large;
@@ -161,11 +120,15 @@
 </style>
 <script>
 import { defineComponent, ref } from "vue";
+import TurnPhone from "../components/TurnPhone.vue";
 import { useQuasar } from 'quasar';
 import Mark from "mark.js";
 
 export default defineComponent({
   name: "Experiences",
+  components: {
+    TurnPhone,
+  },
   props: {
     lang: {
       type: String,
@@ -174,7 +137,6 @@ export default defineComponent({
   },
   data() {
     return {
-      isLandscape: false,
       experiences: [
         {
           title: {
