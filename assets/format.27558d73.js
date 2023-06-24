@@ -1,0 +1,1 @@
+import{c as u,h as r}from"./index.c616643d.js";const s={name:String};function m(e){return u(()=>({type:"hidden",name:e.name,value:e.modelValue}))}function c(e={}){return(t,n,a)=>{t[n](r("input",{class:"hidden"+(a||""),...e.value}))}}function i(e){return u(()=>e.name||e.for)}function d(e,t,n){return n<=t?t:Math.min(n,Math.max(t,e))}export{c as a,d as b,i as c,m as d,s as u};
