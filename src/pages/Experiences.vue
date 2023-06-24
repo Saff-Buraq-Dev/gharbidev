@@ -19,9 +19,8 @@
       <div id="experiences" class="col-3">
         <q-list bordered separator>
           <q-item clickable v-ripple v-for="experience in filtered" :key="experience.company"
-            @click="selectExperience(experience)" :class="
-              experience.company == selectedExperience.company ? 'selected' : ''
-            ">
+            @click="selectExperience(experience)" :class="experience.company == selectedExperience.company ? 'selected' : ''
+              ">
             <q-item-section>
               <q-item-label class="experienceTitle">{{
                 experience.title[lang]
@@ -138,6 +137,42 @@ export default defineComponent({
   data() {
     return {
       experiences: [
+        {
+          title: {
+            fr: "Stagiaire administration plateformes infonuagiques AWS",
+            en: "AWS cloud platform administration intern",
+          },
+          company: "Hydro - Québec",
+          period: { fr: "Mai 2023 - Aou 2023", en: "Mai 2023 - Aug 2023" },
+          tasks: {
+            fr: [
+              "Automatiser des mécanismes de cyber sécurité",
+              "Développer des systèmes de gestion dans AWS",
+              "Créer des infrastructures infonuagiques en utilisant l'approche Infrastructure as Code",
+            ],
+            en: [
+              "Automate cyber security mechanisms",
+              "Develop management systems in AWS",
+              "Build cloud infrastructures using the Infrastructure as Code approach",
+            ],
+          },
+          descriptions: {
+            fr: [
+              `J'ai développé une fonction Lambda qui fait le tour de tous les comptes AWS de l'organization et liste
+              toutes les ressources avec une adresse ip publique. La fonction est exécutée à toutes les heures grâce à une règle EventBridge et dépose les résultats sous forme de JSON dans un bucket S3.`,
+              `J'ai développé un système automatisé de validation des contacts techniques des différents comptes. Une fonction Lambda récupère les informations et les place dans une table DynamoDB. Ensuite une autre Lambda envoie des emails en utilisant l'api de Sengrid. Dans l'email il y a deux boutons qui pointent vers un Application Load Balancer qui transmet le traffic à un API Gateway. Un Web Application Firewall est attaché à l'API Gateway. La réponse du contact déclenche une autre fonction Lambda qui va enregistrer la réponse dans la base de données.`,
+              `J'ai participé à l'élaboration de la documentation pour nos clients pour consommer des ressources dans AWS et notamment le Backup des instances EC2 et des buckets S3.`,
+              `J'ai déployé toutes les ressources citées avec CDK (Cloud Development Kit) en Typescript.`
+            ],
+            en: [
+              `I developed a Lambda function that goes around all AWS accounts in the organization and lists
+              all resources with a public ip address. The function is executed every hour thanks to an EventBridge rule and deposits the results in the form of JSON in an S3 bucket.`,
+              `I developed an automated system for validating the technical contacts of the different accounts. A Lambda function retrieves information and places it in a DynamoDB table. Then another Lambda sends emails using the Sengrid API. In the email there are two buttons that point to an Application Load Balancer that forwards traffic to an API Gateway. A Web Application Firewall is attached to the API Gateway. The contact's response triggers another Lambda function that will save the response to the database.`,
+              `I participated in the development of documentation for our customers to consume resources in AWS and in particular the Backup of EC2 instances and S3 buckets.`,
+              `I deployed all the cited resources with CDK (Cloud Development Kit) in Typescript.`
+            ],
+          },
+        },
         {
           title: {
             fr: "Stagiaire développeur FullStack",
