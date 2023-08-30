@@ -2,33 +2,16 @@
   <q-layout view="lHh Lpr lFf">
     <q-header elevated>
       <q-toolbar>
-        <q-btn
-          flat
-          dense
-          round
-          icon="menu"
-          aria-label="Menu"
-          @click="toggleLeftDrawer"
-        />
+        <q-btn flat dense round icon="menu" aria-label="Menu" @click="toggleLeftDrawer" />
 
         <q-toolbar-title>
-          {{ $t("fullstackDeveloper") }} | AWS Certified Cloud Practitioner
+          {{ $t("fullstackDeveloper") }} | AWS Certified Solutions Architect Associate
         </q-toolbar-title>
 
         <div>
-          <q-btn-toggle
-            v-model="selectedLang"
-            class="my-custom-toggle"
-            no-caps
-            rounded
-            unelevated
-            toggle-color="secondary"
-            color="white"
-            :value="selectedLang"
-            text-color="primary"
-            :options="langs"
-            @update:model-value="toggleLang"
-          >
+          <q-btn-toggle v-model="selectedLang" class="my-custom-toggle" no-caps rounded unelevated
+            toggle-color="secondary" color="white" :value="selectedLang" text-color="primary" :options="langs"
+            @update:model-value="toggleLang">
           </q-btn-toggle>
         </div>
       </q-toolbar>
@@ -39,12 +22,8 @@
         <a href="/">
           <q-img src="~assets/gharbidev.png" contain />
         </a>
-        <EssentialLink
-          v-for="link in essentialLinks"
-          :key="link.title[selectedLang]"
-          :lang="selectedLang"
-          v-bind="link"
-        />
+        <EssentialLink v-for="link in essentialLinks" :key="link.title[selectedLang]" :lang="selectedLang"
+          v-bind="link" />
       </q-list>
     </q-drawer>
 

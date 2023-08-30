@@ -1,11 +1,6 @@
 <template>
   <q-page class="flex flex-center">
-    <q-pdfviewer
-      v-model="show"
-      type="html5"
-      :src="updatedSrc"
-      content-class="absolute"
-    ></q-pdfviewer>
+    <q-pdfviewer v-model="show" type="html5" :src="updatedSrc" content-class="absolute"></q-pdfviewer>
   </q-page>
 </template>
 
@@ -17,7 +12,7 @@ export default defineComponent({
   data() {
     return {
       show: true,
-      src: "pdf/ccp.pdf",
+      src: "pdf/aws.pdf",
     };
   },
   methods: {
