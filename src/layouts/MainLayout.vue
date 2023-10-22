@@ -124,6 +124,15 @@ export default defineComponent({
           icon: "workspace_premium",
           link: "/certifications",
         },
+        {
+          title: { fr: "Blog", en: "Blog" },
+          caption: {
+            fr: "Voir mon blog",
+            en: "See my blog",
+          },
+          icon: "fas fa-blog",
+          link: "https://aws.gharbidev.com",
+        },
       ],
       langs: langsList,
       selectedLang: this.getLang(),

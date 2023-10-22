@@ -76,6 +76,11 @@ export default defineComponent({
     return {
       usefulLinks: [
         {
+          url: "https://www.youtube.com/channel/UCx2tKsGtcPdSSBsEzf5R2SQ",
+          color: "red",
+          icon: "fab fa-youtube",
+        },
+        {
           url: "https://github.com/Saff-Buraq-Dev",
           color: "black",
           icon: "fab fa-github",
@@ -89,6 +94,11 @@ export default defineComponent({
           url: "https://www.credly.com/badges/91634c7c-a16b-4a43-9949-7092af73b554/public_url",
           color: "warning",
           icon: "img:aws.png",
+        },
+        {
+          url: "https://aws.gharbidev.com",
+          color: "black",
+          icon: "fas fa-blog",
         },
         {
           url: `pdf/resume-${this.lang}.pdf`,

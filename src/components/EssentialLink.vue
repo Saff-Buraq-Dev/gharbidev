@@ -1,5 +1,6 @@
 <template>
-  <q-item clickable tag="router-link" :to="link">
+  <q-item clickable :tag="tagType" :to="isInternalLink ? link : null" :href="isExternalLink ? link : null"
+    :target="isExternalLink ? '_blank' : null" :rel="isExternalLink ? 'noopener noreferrer' : null">
     <q-item-section v-if="icon" avatar>
       <q-icon :name="icon" />
     </q-item-section>
@@ -12,7 +13,7 @@
 </template>
 
 <script>
-import { defineComponent } from "vue";
+import { defineComponent, computed } from "vue";
 
 export default defineComponent({
   name: "EssentialLink",
@@ -24,7 +25,7 @@ export default defineComponent({
 
     caption: {
       type: Object,
-      default: "",
+      default: () => ({}),
     },
 
     link: {
@@ -41,6 +42,13 @@ export default defineComponent({
       type: String,
       default: "fr",
     },
+  },
+  setup(props) {
+    const isInternalLink = computed(() => !props.link.startsWith('http'));
+    const isExternalLink = computed(() => props.link.startsWith('http'));
+    const tagType = computed(() => isInternalLink.value ? 'router-link' : 'a');
+
+    return { isInternalLink, isExternalLink, tagType };
   },
 });
 </script>
