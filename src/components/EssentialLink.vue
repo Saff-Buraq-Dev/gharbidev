@@ -1,6 +1,15 @@
 <template>
-  <q-item clickable :tag="tagType" :to="isInternalLink ? link : null" :href="isExternalLink ? link : null"
-    :target="isExternalLink ? '_blank' : null" :rel="isExternalLink ? 'noopener noreferrer' : null">
+  <q-item v-if="isInternalLink" clickable :tag="tagType" :to="link">
+    <q-item-section v-if="icon" avatar>
+      <q-icon :name="icon" />
+    </q-item-section>
+
+    <q-item-section>
+      <q-item-label>{{ title[lang] }}</q-item-label>
+      <q-item-label caption>{{ caption[lang] }}</q-item-label>
+    </q-item-section>
+  </q-item>
+  <q-item v-else clickable :tag="tagType" :href="link" target="_blank" rel="noopener noreferrer">
     <q-item-section v-if="icon" avatar>
       <q-icon :name="icon" />
     </q-item-section>
